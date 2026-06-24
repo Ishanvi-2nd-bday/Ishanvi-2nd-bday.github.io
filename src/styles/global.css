@@ -132,7 +132,7 @@ a { color: var(--rose-deep); }
 .balloon-2 {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(7.5rem, 32vw, 15rem);
+  font-size: clamp(9rem, 44vw, 15rem);
   line-height: 1;
   color: #b83a63;
   text-shadow: 0 8px 0 #e8829e, 0 18px 28px rgba(150, 40, 75, 0.35);
