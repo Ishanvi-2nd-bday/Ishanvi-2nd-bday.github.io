@@ -12,9 +12,21 @@ export const party = {
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Amaravathi+Restaurant',
 }
 
-// PLACEHOLDER — paste your Formspree form id (e.g. "xrgkabcd").
-// Get one free at https://formspree.io. Until set, the form runs in demo mode.
-export const FORMSPREE_ID = ''
+// Google Form target. The styled RSVP form posts straight to this form's
+// /formResponse endpoint (no iframe). `entries` map to the form's field IDs;
+// choice values below must match the Google Form options exactly.
+export const googleForm = {
+  action:
+    'https://docs.google.com/forms/d/e/1FAIpQLSfOeeGXK7QzV03bznEj8MDc73STakuAdQjU3C7Lk9a0NRWD0Q/formResponse',
+  entries: {
+    name: 'entry.1314273606',
+    guests: 'entry.1898361391',
+    attending: 'entry.107326080',
+    message: 'entry.1201468559',
+  },
+  guestOptions: ['1', '2', '3', '4', '5'],
+  attendingOptions: ['Yes, can’t wait 🎀', 'Sorry, can’t make it 💔'],
+}
 
 // Gallery photos live in /public/gallery (photo-01.jpg ... photo-22.jpg).
 // Captions cycle through this list; order is shuffled randomly on each load.

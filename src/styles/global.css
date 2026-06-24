@@ -132,18 +132,18 @@ a { color: var(--rose-deep); }
 .balloon-2 {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(6rem, 26vw, 12rem);
+  font-size: clamp(7.5rem, 32vw, 15rem);
   line-height: 1;
-  color: var(--rose);
-  text-shadow: 0 8px 0 #f3a8bf, 0 16px 24px rgba(200, 73, 47, 0.25);
+  color: #b83a63;
+  text-shadow: 0 8px 0 #e8829e, 0 18px 28px rgba(150, 40, 75, 0.35);
   cursor: pointer;
   animation: float-balloon 4s ease-in-out infinite;
   user-select: none;
 }
-.balloon-2::after { content: ''; display: block; width: 2px; height: 40px; margin: 0 auto; background: linear-gradient(var(--rose), transparent); }
+.balloon-2::after { content: ''; display: block; width: 2px; height: 40px; margin: 0 auto; background: linear-gradient(#b83a63, transparent); }
 @keyframes float-balloon { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
 .hero-emoji { font-size: clamp(3rem, 12vw, 5.5rem); animation: float-balloon 5s ease-in-out infinite; }
-.hero-tap-hint { margin-top: 1.4rem; font-size: 0.9rem; color: var(--rose); opacity: 0.8; }
+.hero-tap-hint { margin-top: 1.6rem; font-size: 1.15rem; font-weight: 600; color: var(--rose-deep); opacity: 1; }
 
 /* ---------- Countdown ---------- */
 .countdown { text-align: center; }
@@ -204,6 +204,8 @@ a { color: var(--rose-deep); }
 .rsvp-thanks { text-align: center; padding: 1rem; }
 .rsvp-thanks .big { font-family: var(--font-display); font-size: 1.5rem; color: var(--rose-deep); }
 .rsvp-note { font-size: 0.8rem; opacity: 0.7; text-align: center; margin-top: 0.8rem; }
+.rsvp-frame { width: 100%; min-height: 720px; border: none; border-radius: calc(var(--radius) - 12px); background: transparent; }
+.rsvp-thanks code { background: rgba(200, 73, 47, 0.1); padding: 0.1em 0.4em; border-radius: 6px; font-size: 0.85em; }
 
 /* ---------- Footer ---------- */
 .footer { text-align: center; padding-bottom: 4rem; }

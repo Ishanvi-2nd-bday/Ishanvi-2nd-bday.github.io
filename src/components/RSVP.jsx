@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import confetti from 'canvas-confetti'
-import { FORMSPREE_ID, party } from '../data/config.js'
+import { googleForm, party } from '../data/config.js'
 
 const COLORS = ['#f8c8dc', '#e8829e', '#c8a2e0', '#ffd9e6']
 
@@ -14,32 +14,32 @@ function celebrate() {
 }
 
 export default function RSVP() {
-  const [status, setStatus] = useState('idle') // idle | sending | done | error
+  const [status, setStatus] = useState('idle') // idle | sending | done
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const form = e.target
-    const data = new FormData(form)
-
-    // Demo mode if no Formspree id set yet.
-    if (!FORMSPREE_ID) {
-      setStatus('sending')
-      setTimeout(() => { setStatus('done'); celebrate() }, 600)
-      return
-    }
+    const f = e.target
+    const { entries, action } = googleForm
+    const body = new URLSearchParams()
+    body.append(entries.name, f.name.value)
+    body.append(entries.guests, f.guests.value)
+    body.append(entries.attending, f.attending.value)
+    if (f.message.value) body.append(entries.message, f.message.value)
 
     setStatus('sending')
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      // Google Forms doesn't send CORS headers; no-cors fire-and-forget still records the response.
+      await fetch(action, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
       })
-      if (res.ok) { setStatus('done'); celebrate() }
-      else setStatus('error')
     } catch {
-      setStatus('error')
+      /* opaque response is expected with no-cors */
     }
+    setStatus('done')
+    celebrate()
   }
 
   return (
@@ -61,14 +61,13 @@ export default function RSVP() {
               <div className="field">
                 <label htmlFor="guests">Number of guests</label>
                 <select id="guests" name="guests" defaultValue="1">
-                  {[1, 2, 3, 4, 5, 6].map((n) => <option key={n} value={n}>{n}</option>)}
+                  {googleForm.guestOptions.map((n) => <option key={n} value={n}>{n}</option>)}
                 </select>
               </div>
               <div className="field">
                 <label htmlFor="attending">Will you attend?</label>
-                <select id="attending" name="attending" defaultValue="Yes">
-                  <option>Yes, can’t wait! 🎀</option>
-                  <option>Sorry, can’t make it 💔</option>
+                <select id="attending" name="attending" defaultValue={googleForm.attendingOptions[0]}>
+                  {googleForm.attendingOptions.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               </div>
               <div className="field">
@@ -78,8 +77,6 @@ export default function RSVP() {
               <button className="btn rsvp-submit" disabled={status === 'sending'}>
                 {status === 'sending' ? 'Sending…' : 'Send RSVP 🦋'}
               </button>
-              {status === 'error' && <p className="rsvp-note" style={{ color: '#c0492f' }}>Oops, something went wrong. Try again.</p>}
-              {!FORMSPREE_ID && <p className="rsvp-note">Demo mode — add a Formspree ID in config.js to collect real replies.</p>}
             </form>
           )}
         </div>
