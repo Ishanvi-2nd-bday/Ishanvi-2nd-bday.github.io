@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef } from 'react'
 import confetti from 'canvas-confetti'
 import { party } from '../data/config.js'
-import Candle2 from './Candle2.jsx'
 
 const PINKS = ['#ffd9e6', '#f8c8dc', '#f3a8bf', '#e8829e', '#d65f86', '#c8a2e0']
 const Z = 99999
@@ -97,7 +96,7 @@ export default function Hero() {
         <span className="hero-emoji" role="img" aria-label="fairy">🧚</span>
 
         <span
-          className="balloon-wrap"
+          className="balloon-2"
           role="button"
           tabIndex={0}
           aria-label="Celebrate"
@@ -107,8 +106,7 @@ export default function Hero() {
           }}
           onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); celebrate() } }}
         >
-          {/* the number 2 as a sprinkle chocolate candle (SVG) */}
-          <Candle2 />
+          {party.age}
         </span>
 
         <span className="hero-emoji" role="img" aria-label="cake">🍰</span>
