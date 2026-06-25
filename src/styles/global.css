@@ -124,41 +124,28 @@ a { color: var(--rose-deep); }
 }
 
 /* ---------- Hero ---------- */
-.hero { text-align: center; padding-top: clamp(2.5rem, 9vw, 5rem); padding-bottom: 1rem; }
+.hero { text-align: center; padding-top: clamp(1.5rem, 5vw, 3rem); padding-bottom: 1rem; }
 .hero-eyebrow { font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); font-size: 0.85rem; }
-.hero-name { font-family: var(--font-script); color: var(--rose-deep); font-size: clamp(4rem, 18vw, 9rem); line-height: 0.9; margin: 0.2rem 0; }
-.hero-turns { font-family: var(--font-display); font-size: clamp(1.6rem, 6vw, 2.4rem); color: var(--ink); }
-.hero-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: clamp(0.3rem, 2vw, 1.6rem); margin: 1.5rem auto 0; max-width: 680px; }
+.hero-name { font-family: var(--font-script); color: var(--rose-deep); font-size: clamp(3.4rem, 15vw, 7.5rem); line-height: 1.05; margin: 0.1rem 0; padding-top: 0.25em; }
+.hero-turns { font-family: var(--font-display); font-size: clamp(1.4rem, 5vw, 2.2rem); color: var(--ink); margin: 0.3rem 0 0; }
+.hero-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: clamp(0.3rem, 2vw, 1.6rem); margin: 0.8rem auto 0; max-width: 680px; }
 
-.balloon-wrap {
-  position: relative;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  animation: float-balloon 4s ease-in-out infinite;
-}
-.balloon-wrap:focus-visible { outline: 3px dashed var(--rose); outline-offset: 8px; border-radius: 12px; }
-
-/* the "2" rendered as a metallic rose-gold number candle */
 @keyframes float-balloon { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
 
-/* sprinkle chocolate number-2 candle */
-.candle2 {
-  display: block;
-  width: clamp(10rem, 48vw, 15rem);
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 12px 16px rgba(90, 41, 23, 0.35));
+/* the "2" as a big script-style number */
+.balloon-2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(7rem, 30vw, 13rem);
+  line-height: 1;
+  color: #b83a63;
+  text-shadow: 0 8px 0 #e8829e, 0 18px 28px rgba(150, 40, 75, 0.35);
+  cursor: pointer;
+  animation: float-balloon 4s ease-in-out infinite;
+  user-select: none;
 }
-.candle2 .flame { transform-origin: 105px 78px; animation: flicker 0.5s ease-in-out infinite alternate; }
-.candle2 .glow { transform-origin: 105px 58px; animation: glow-pulse 0.5s ease-in-out infinite alternate; }
-@keyframes flicker {
-  0%   { transform: scale(1) rotate(-2deg); opacity: 0.92; }
-  100% { transform: scale(1.06, 1.1) rotate(2deg); opacity: 1; }
-}
-@keyframes glow-pulse { from { opacity: 0.6; transform: scale(0.95); } to { opacity: 0.95; transform: scale(1.08); } }
+.balloon-2::after { content: ''; display: block; width: 2px; height: 40px; margin: 0 auto; background: linear-gradient(#b83a63, transparent); }
+.balloon-2:focus-visible { outline: 3px dashed var(--rose); outline-offset: 8px; border-radius: 12px; }
 
 /* ---------- CSS pink balloons ---------- */
 .balloon-layer { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: hidden; }
@@ -189,7 +176,7 @@ a { color: var(--rose-deep); }
   100% { transform: translate(var(--drift), -118vh) rotate(3deg); opacity: 0; }
 }
 .hero-emoji { font-size: clamp(3rem, 12vw, 5.5rem); animation: float-balloon 5s ease-in-out infinite; }
-.hero-tap-hint { margin-top: 1.6rem; font-size: 1.15rem; font-weight: 600; color: var(--rose-deep); opacity: 1; }
+.hero-tap-hint { margin-top: 0.8rem; font-size: 1.1rem; font-weight: 600; color: var(--rose-deep); opacity: 1; }
 
 /* ---------- Countdown ---------- */
 .countdown { text-align: center; }
